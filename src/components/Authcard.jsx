@@ -5,13 +5,13 @@ function Authcard(){
          <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-sm">
             <div className="flex justify-center gap-4 mb-6">
 
-                <button className={`px-4 py-2 rounded-lg font-medium cursor-pointer ${
+                <button className={`px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition cursor-pointer ${
                 isSignUp ? "bg-black text-white" : "bg-gray-200 text-black"}`}
                 onClick={() => setIsSignUp(true)}
                 > Sign Up
                 </button>
 
-                <button className={`px-4 py-2 rounded-lg font-medium cursor-pointer ${
+                <button className={`px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition cursor-pointer ${
                 !isSignUp ? "bg-black text-white" : "bg-gray-200 text-black"}`}
                 onClick={() => setIsSignUp(false)}
                 > Sign In
