@@ -1,8 +1,10 @@
 import {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 function Authcard(){
+    const navigate = useNavigate();
     const [isSignUp, setIsSignUp] = useState(false);
     return(
-         <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-sm">
+         <div className="bg-white font-roboto rounded-xl shadow-md p-6 w-full max-w-sm">
             <div className="flex justify-center gap-4 mb-6">
 
                 <button className={`px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition cursor-pointer ${
@@ -24,7 +26,8 @@ function Authcard(){
                 <input type="password" placeholder="Password" className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"/>
                 
                 {isSignUp && (<input type="password" placeholder="Confirm Password" className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"/>)}
-                <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer">
+                <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer"
+                onClick={() => navigate('/dashboard')}>
                 {isSignUp ? "Create Account" : "Log In"}
                 </button>
             </form>

@@ -5,13 +5,13 @@ function AchievementCard({ count = 35, activity = "Running with the Wind" }) {
 
   function getRandomColor() {
     const colors = [
-      'bg-red-200',
-      'bg-blue-200',
-      'bg-yellow-200',
-      'bg-green-200',
-      'bg-purple-200',
-      'bg-pink-200',
-      'bg-orange-200'
+      'bg-rose-200',     // soft pink
+      'bg-emerald-200',  // minty green
+      'bg-sky-200',      // calm blue
+      'bg-orange-200',   // warm contrast
+      'bg-teal-200',     // retro touch
+      'bg-lime-200',     // zesty, playful
+      'bg-purple-200',   // balanced softness
     ];
     const index = Math.floor(Math.random() * colors.length);
     return colors[index];
@@ -22,7 +22,6 @@ function AchievementCard({ count = 35, activity = "Running with the Wind" }) {
   }, []);
 
   // Circular progress logic
-
   return (
     <div className={`w-64 h-64 rounded-4xl shadow-md ${bgColor} flex flex-col items-center justify-center`}>
         <p className="text-2xl font-normal font-roboto p-5 text-start">{activity}</p>
