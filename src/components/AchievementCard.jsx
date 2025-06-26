@@ -6,11 +6,8 @@ function AchievementCard({ count = 35, activity = "Running with the Wind" }) {
   function getRandomColor() {
     const colors = [
       'bg-rose-200',     // soft pink
-      'bg-emerald-200',  // minty green
       'bg-sky-200',      // calm blue
       'bg-orange-200',   // warm contrast
-      'bg-teal-200',     // retro touch
-      'bg-lime-200',     // zesty, playful
       'bg-purple-200',   // balanced softness
     ];
     const index = Math.floor(Math.random() * colors.length);
