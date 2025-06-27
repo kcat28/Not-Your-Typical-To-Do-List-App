@@ -1,6 +1,6 @@
 import scattered_icons from '../assets/scattered_icons.png';
-import AchievementCard from "../components/AchievementCard";
-import { Navigate, useNavigate } from 'react-router-dom';
+import Achievementcard from '../components/AchievementCard';
+import {useNavigate } from 'react-router-dom';
 function Achievement() {
     const navigate = useNavigate();
     return (
@@ -14,11 +14,11 @@ function Achievement() {
                         onClick={() => navigate('/dashboard')}>x</button>
 
                     <div className='flex flex-wrap items-start gap-5'>
-                            <AchievementCard/>
-                            <AchievementCard/>
-                            <AchievementCard/>
-                            <AchievementCard/>
-                            <AchievementCard/>
+                            <Achievementcard/>
+                            <Achievementcard/>
+                            <Achievementcard/>
+                            <Achievementcard/>
+                            <Achievementcard/>
                     </div>
                 </div>
                 
