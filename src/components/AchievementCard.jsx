@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function AchievementCard({ count = 35, activity = "Running with the Wind" }) {
+function Achievementcard({ count = 35, activity = "Running with the Wind" }) {
   const [bgColor, setBgColor] = useState('');
 
   function getRandomColor() {
@@ -38,4 +38,4 @@ function AchievementCard({ count = 35, activity = "Running with the Wind" }) {
   );
 }
 
-export default AchievementCard;
+export default Achievementcard;
