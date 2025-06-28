@@ -1,8 +1,24 @@
 import scattered_icons from '../assets/scattered_icons.png';
 import Achievementcard from '../components/AchievementCard';
 import {useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 function Achievement() {
+
     const navigate = useNavigate();
+    useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        navigate(-1); 
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [navigate]);
+  
     return (
         <div
             className="min-h-screen bg-[#FFEE9F] flex flex-col items-center px-6 pt-16"
