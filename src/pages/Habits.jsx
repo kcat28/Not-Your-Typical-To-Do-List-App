@@ -18,10 +18,10 @@ function Habits() {
                  
                 {/* Main Content */}
                  <Maincontent title="Habits" isSub={true} isOpen={selectedNote} >
-                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} />
+                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} noteName={"H1"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} noteName={"H2"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} noteName={"H3"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} noteName={"H4"}/>
                 </Maincontent>
 
                 {selectedNote && (<Notedetail note={selectedNote} onClose={() => setSelectedNote(null)} />)}

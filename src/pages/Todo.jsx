@@ -18,14 +18,14 @@ function Todo() {
 
                 {/* Main Content */}
                 <Maincontent title="To-do" isSub={true} isOpen={selectedNote} >
-                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} />
+                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} noteName={"test1"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} noteName={"test2"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} noteName={"test3"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} noteName={"test4"}/>
                 </Maincontent>
 
                 {selectedNote && (<Notedetail note={selectedNote} onClose={() => setSelectedNote(null)} />)}
-                {isModalOpen &&(<Newnote isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={(note) => console.log('Saving note:', note)}  />)}
+                {isModalOpen &&(<Newnote isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={() => console.log('Saving note:', selectedNote)}  />)}
                     
         </div>
     )
