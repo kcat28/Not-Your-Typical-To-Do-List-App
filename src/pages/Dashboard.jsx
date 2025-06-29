@@ -18,10 +18,10 @@ function Dashboard() {
                  
                 {/* Main Content */}
                  <Maincontent title="Dashboard" isSub={false} isOpen={selectedNote} >
-                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} />
-                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} />
+                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} noteName={"DB1"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} noteName={"DB2"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} noteName={"DB3"}/>
+                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} noteName={"DB4"}/>
                 </Maincontent>
 
                 {selectedNote && (<Notedetail note={selectedNote} onClose={() => setSelectedNote(null)} />)}
