@@ -4,6 +4,8 @@ export default function Newnote({ isOpen, onClose, onSave }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selected, setSelected] = useState("");
+  const [achievement, setAchievement] = useState(""); // New state
+  const achievementOptions = ["Fitness", "Reading", "Meditation", "Coding"];
 
    useEffect(() => {
     const handleKeyDown = (e) => {
@@ -26,9 +28,16 @@ export default function Newnote({ isOpen, onClose, onSave }) {
 
   const handleSave = () => {
   if (!title.trim()) return alert("Title is required.");
-    onSave({ title, content });
+    onSave({
+      title,
+      content,
+      type: selected,
+      ...(selected === "habits" && { achievement }),
+    });
     setTitle("");
     setContent("");
+    setSelected("");
+    setAchievement("");
     onClose();
   };
 
@@ -52,6 +61,23 @@ export default function Newnote({ isOpen, onClose, onSave }) {
             </label>
         </div>
         </div>
+
+         {/* Achievement dropdown for Habits */}
+         {selected === "habits" && (
+          <div className="mb-4">
+            <label className="block text-sm font-roboto mb-1">Choose Achievement Card:</label>
+            <select
+              value={achievement}
+              onChange={(e) => setAchievement(e.target.value)}
+              className="w-full border rounded-md p-2"
+            >
+              <option value="" disabled>Select one...</option>
+              {achievementOptions.map((opt) => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/*input title*/}
         <input type="text" placeholder="Title" className="w-full border rounded-md p-2 mb-3" value={title} onChange={(e) => setTitle(e.target.value)}/>
