@@ -1,6 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import "tailwindcss";
 
+/* Quill overrides */
+.ql-editor {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 1.10rem;
+  min-height: 500px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0 0 0.75rem 0.75rem;
+  outline: none;
+}
+
+.ql-toolbar {
+  background-color: white;
+  border: none !important;
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 0.5rem 1rem;
+}
+
+.ql-container {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Checkbox styling */
+.ql-editor input[type='checkbox'] {
+  accent-color: #22c55e; /* Tailwind green-500 */
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+/* List styling cleanup */
+.ql-editor li {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
 @theme {
   --font-roboto: "Roboto Mono", monospace;
 }
+
