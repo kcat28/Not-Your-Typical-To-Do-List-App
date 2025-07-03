@@ -14,8 +14,8 @@ export default function NewAchievementCard({ onClose, onSave }) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">Create New Achievement Card</h2>
+      <div className="bg-white rounded-2xl shadow-md p-6 ">
+        <h2 className="text-xl font-bold mb-4">New Achievement Card</h2>
 
         <input
           type="text"
@@ -37,13 +37,13 @@ export default function NewAchievementCard({ onClose, onSave }) {
 
         <div className="flex justify-end space-x-2">
           <button
-            className="bg-gray-300 px-4 py-2 rounded-md"
+            className="bg-gray-300 px-4 py-2 rounded-md cursor-pointer"
             onClick={onClose}
           >
             Cancel
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded-md"
+            className="bg-green-500 text-white px-4 py-2 rounded-md cursor-pointer"
             onClick={handleSave}
           >
             Save

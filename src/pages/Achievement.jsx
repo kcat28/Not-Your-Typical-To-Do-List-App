@@ -27,12 +27,9 @@ function Achievement() {
             style={{ backgroundImage: `url(${scattered_icons})` }}>
             <div className="bg-white rounded-4xl shadow-md px-10 py-5 w-[70%]">
               <div className="relative mb-4">
-                    <h1 className="text-3xl font-bold font-roboto text-center pb-15 pt-10">Achievements</h1>
-                        <button className="absolute top-0 left-0 w-12 h-12 flex items-center justify-center text-2xl font-mono rounded-full border-2 border-gray-300 text-gray-500 hover:text-green-500 hover:bg-green-100 transition cursor-pointer"
-                          onClick={() => setIsModalOpen(true)}>+ </button>
-
+                    <h1 className="text-3xl font-bold font-roboto text-center pb-15 pt-10">Achievements 🏆</h1>
                         <button className="absolute top-0 right-0 text-4xl font-normal font-mono text-gray-500 hover:text-red-500 transition cursor-pointer"
-                        onClick={() => navigate('/dashboard')}>x</button>
+                        onClick={() => navigate('/allnotes')}>x</button>
 
                     <div className='flex flex-wrap items-start gap-5'>
                             <Achievementcard/>
@@ -40,6 +37,16 @@ function Achievement() {
                             <Achievementcard/>
                             <Achievementcard/>
                             <Achievementcard/>
+
+                            {/* Add New Card (Button)*/}
+                            <div
+                              onClick={() => setIsModalOpen(true)}
+                              className="w-64 h-64 rounded-4xl shadow-md border-dashed border-2 border-gray-300 flex flex-col 
+                              items-center justify-center cursor-pointer hover:bg-gray-100 transition"
+                            >
+                              <span className="text-6xl font-light text-gray-400">+</span>
+                              <p className="text-lg text-gray-500 font-roboto mt-2">Add New</p>
+                            </div>
                     </div>
                 </div> 
             </div>

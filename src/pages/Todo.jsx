@@ -3,29 +3,56 @@ import scattered_icons from '../assets/scattered_icons.png'
 import Contentcard from '../components/Contentcard'
 import Sidebar from '../components/Sidebar.jsx';
 import Maincontent from '../components/Maincontent.jsx';
-import Notedetail from '../components/Notedetail.jsx'; 
-import Newnote from '../components/Newnote.jsx';
+import Note from '../components/Note.jsx';
 
 function Todo() {
     const [selectedNote, setSelectedNote] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCreating, setIsCreating] = useState(false);
+
+    const handleNoteClick = (noteName) => {
+        setIsCreating(false);
+        setSelectedNote(noteName);
+    };
+     const handleNewNote = () => {
+        setIsCreating(true);
+        setSelectedNote(null);
+    };
+    const handleCloseNote = () => {
+        setIsCreating(false);
+        setSelectedNote(null);
+    };
 
     return(
         <div className="h-screen w-screen bg-[#FFEE9F] flex flex-row justify-center px-10 pt-16 pb-16 gap-7"
              style={{ backgroundImage: `url(${scattered_icons})`}}>
-                {/* Sidebar */}
-                <Sidebar onCreateClick={() => setIsModalOpen(true)} />
-
+               {/* Sidebar */}
+                <Sidebar/>
+                 
                 {/* Main Content */}
-                <Maincontent title="To-do" isSub={true} isOpen={selectedNote} >
-                    <Contentcard onClick={() => setSelectedNote("Note 1")} shrink={selectedNote !== null} noteName={"test1"}/>
-                    <Contentcard onClick={() => setSelectedNote("Note 2")} shrink={selectedNote !== null} noteName={"test2"}/>
-                    <Contentcard onClick={() => setSelectedNote("Note 3")} shrink={selectedNote !== null} noteName={"test3"}/>
-                    <Contentcard onClick={() => setSelectedNote("Note 4")} shrink={selectedNote !== null} noteName={"test4"}/>
+                <Maincontent title="To-do ✅" isSub={false} isOpen={selectedNote || isCreating}>
+                    <Contentcard onClick={() => handleNoteClick("Note 1")} shrink={selectedNote !== null || isCreating} noteName={"TD1"} />
+                    <Contentcard onClick={() => handleNoteClick("Note 2")} shrink={selectedNote !== null || isCreating} noteName={"TD2"} />
+                    <Contentcard onClick={() => handleNoteClick("Note 3")} shrink={selectedNote !== null || isCreating} noteName={"TD3"} />
+                    <Contentcard onClick={() => handleNoteClick("Note 4")} shrink={selectedNote !== null || isCreating} noteName={"TD4"} />
+
+                    <div
+                        onClick={handleNewNote}
+                        className="w-[30%] bg-[#FFF7D4] rounded-3xl shadow-md flex flex-col items-center justify-center cursor-pointer 
+                        hover:bg-yellow-100 transition"
+                    >
+                        <span className="text-6xl font-light text-gray-400">+</span>
+                        <p className="text-lg text-gray-500 font-roboto mt-2">Add New Note</p>
+                    </div>
                 </Maincontent>
 
-                {selectedNote && (<Notedetail note={selectedNote} onClose={() => setSelectedNote(null)} />)}
-                {isModalOpen &&(<Newnote isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={() => console.log('Saving note:', selectedNote)}  />)}
+                {/*Note*/}
+                    {(selectedNote || isCreating) && (
+                    <Note
+                        note={selectedNote}     
+                        isCreating={isCreating}  
+                        onClose={handleCloseNote}
+                    />
+                )}
                     
         </div>
     )

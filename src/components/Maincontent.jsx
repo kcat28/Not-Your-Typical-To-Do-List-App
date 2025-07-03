@@ -13,7 +13,7 @@ function Maincontent({ title, children, isSub = false, isOpen = null}) {
         {isSub && !isOpen && (
           <button
             className="absolute top-0 right-0 text-4xl font-normal font-mono text-gray-500 hover:text-red-500 transition cursor-pointer"
-            onClick={() => navigate('/dashboard')}>
+            onClick={() => navigate('/allnotes')}>
             x
           </button>
         )}

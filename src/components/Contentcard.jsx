@@ -18,7 +18,7 @@ function Contentcard({onClick, noteName}){
             </div>
 
             <div className='flex flex-col gap-6 px-2'>
-                <p className='text-gray-700'>Lorem ipsi</p>
+                <p className='text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <p className='font-roboto text-gray-500'>Created on 6/27/2025</p>
             </div>
 

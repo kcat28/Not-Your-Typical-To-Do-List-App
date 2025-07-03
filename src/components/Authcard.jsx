@@ -27,7 +27,7 @@ function Authcard(){
                 
                 {isSignUp && (<input type="password" placeholder="Confirm Password" className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"/>)}
                 <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer"
-                onClick={() => navigate('/dashboard')}>
+                onClick={() => navigate('/allnotes')}>
                 {isSignUp ? "Create Account" : "Log In"}
                 </button>
             </form>
