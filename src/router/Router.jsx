@@ -6,6 +6,7 @@ import Achievement from '../pages/Achievement';
 import AllNotes from '../pages/AllNotes';
 import Todo from '../pages/Todo';
 import Habits from  '../pages/Habits'
+import ProtectedRoute from '../components/Protectedroutes';
 
 export default function router(){
     return(
@@ -13,10 +14,10 @@ export default function router(){
             <Route path="/" element={<LandingPage/>}/>
 
            <Route element={<Layout />}>
-                <Route path="/achievement" element={<Achievement />} />
-                <Route path="/allnotes" element={<AllNotes />} />
-                <Route path="/to-do" element={<Todo />} />
-                <Route path="/habits" element={<Habits />} />
+                <Route path="/achievement" element={<ProtectedRoute> <Achievement /> </ProtectedRoute>} />
+                <Route path="/allnotes" element={<ProtectedRoute> <AllNotes /> </ProtectedRoute>} />
+                <Route path="/to-do" element={<ProtectedRoute> <Todo /> </ProtectedRoute>} />
+                <Route path="/habits" element={<ProtectedRoute> <Habits /> </ProtectedRoute>} />
             </Route>
         </Routes>
     )
