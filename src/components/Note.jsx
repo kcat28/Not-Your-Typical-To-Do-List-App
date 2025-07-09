@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import QuillEditorWithTasks from './QuillEditorWithTasks';
 
-function Note({ note, isCreating, onClose }) {
+function Note({ note, isCreating, onClose, page }) {
   const [save, setSave] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [title, setTitle] = useState(note || "Untitled");
   const [content, setContent] = useState(note?.content || "");
 
-  const [noteType, setNoteType] = useState("to-do"); 
+  const [noteType, setNoteType] = useState( page || "to-do"); 
   const [selectedAchievement, setSelectedAchievement] = useState("");
 
   const handleToggle = () => {
@@ -82,22 +82,24 @@ function Note({ note, isCreating, onClose }) {
       {isCreating && (
         <div className="mb-4 space-y-2">
           <div className="flex gap-4">
-            <label className="flex items-center gap-2 font-roboto cursor-pointer">
+            <label className={`flex items-center gap-2 font-roboto ${page ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}>
               <input
                 type="radio"
                 value="to-do"
                 checked={noteType === "to-do"}
                 onChange={() => setNoteType("to-do")}
+                disabled={!!page}
                 className="accent-yellow-500"
               />
               To-Do
             </label>
-            <label className="flex items-center gap-2 font-roboto cursor-pointer">
+            <label className={`flex items-center gap-2 font-roboto ${page ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}>
               <input
                 type="radio"
                 value="habit"
                 checked={noteType === "habit"}
                 onChange={() => setNoteType("habit")}
+                disabled={!!page}
                 className="accent-green-500"
               />
               Habit

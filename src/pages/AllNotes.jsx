@@ -35,11 +35,11 @@ function Dashboard() {
 
                 <div
                     onClick={handleNewNote}
-                    className="w-[30%] bg-[#FFF7D4] rounded-3xl shadow-md flex flex-col items-center justify-center cursor-pointer 
+                    className="w-[25%] bg-[#FFF7D4] rounded-3xl shadow-md flex flex-col items-center justify-center cursor-pointer 
                     hover:bg-yellow-100 transition"
                 >
-                    <span className="text-6xl font-light text-gray-400">+</span>
-                    <p className="text-lg text-gray-500 font-roboto mt-2">Add New Note</p>
+                    <span className="text-5xl font-light text-gray-400">+</span>
+                    <p className="text-sg text-gray-500 font-roboto mt-2">Add New Note</p>
                 </div>
 
                 </Maincontent>
