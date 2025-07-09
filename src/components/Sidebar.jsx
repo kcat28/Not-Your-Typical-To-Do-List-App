@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
     const navigate = useNavigate();
-
     return (
         <div className='flex flex-col bg-white rounded-4xl shadow-md px-10 py-5 h-full gap-5 items-center relative'>
             {/* Sidebar */}

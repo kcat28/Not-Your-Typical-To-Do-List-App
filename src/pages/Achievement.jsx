@@ -1,4 +1,3 @@
-import scattered_icons from '../assets/scattered_icons.png';
 import Achievementcard from '../components/AchievementCard';
 import {useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -22,9 +21,7 @@ function Achievement() {
   }, [navigate]);
   
     return (
-        <div
-            className="min-h-screen bg-[#FFEE9F] flex flex-col items-center px-6 pt-16"
-            style={{ backgroundImage: `url(${scattered_icons})` }}>
+        <div className="flex flex-col items-center px-6 pt-25">
             <div className="bg-white rounded-4xl shadow-md px-10 py-5 w-[70%]">
               <div className="relative mb-4">
                     <h1 className="text-3xl font-bold font-roboto text-center pb-15 pt-10">Achievements 🏆</h1>

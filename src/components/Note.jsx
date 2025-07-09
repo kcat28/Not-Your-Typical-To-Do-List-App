@@ -29,7 +29,7 @@ function Note({ note, isCreating, onClose }) {
     setTimeout(() => {
       setSave(false);
       onClose(); // later change to opening that saved note (add query)
-    }, 650);
+    }, 690);
   }
 
   const dummyAchievements = [
