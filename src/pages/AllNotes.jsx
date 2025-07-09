@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import scattered_icons from '../assets/scattered_icons.png' 
 import Contentcard from '../components/Contentcard.jsx'
 import Sidebar from '../components/Sidebar.jsx';
 import Maincontent from '../components/Maincontent.jsx';
@@ -23,8 +22,7 @@ function Dashboard() {
     };
 
     return(
-        <div className="h-screen w-screen bg-[#FFEE9F] flex flex-row justify-center px-10 pt-16 pb-16 gap-7"
-             style={{ backgroundImage: `url(${scattered_icons})`}}>
+        <div className="h-screen w-screen flex flex-row justify-center px-10 pt-16 pb-16 gap-7">
                 {/* Sidebar */}
                 <Sidebar/>
                  

@@ -1,6 +1,7 @@
 import {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase';
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 function Authcard(){
@@ -12,25 +13,40 @@ function Authcard(){
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
-            e.preventDefault();
-            setError("");
+    e.preventDefault();
+    setError("");
 
-        try{
-            if (isSignUp) {
-                if (password !== confirmPassword){
-                    setError("Passwords do not match");
-                    return
-                }
-                await createUserWithEmailAndPassword(auth, email, password);
-            } 
-            else {
-                await signInWithEmailAndPassword (auth, email, password);
+    try {
+        let userCredential;
+
+        if (isSignUp) {
+            if (password !== confirmPassword) {
+                setError("Passwords do not match");
+                return;
             }
-            navigate("/allnotes");  
-        } catch (err){
-            setError(err.message);
+
+            // create user
+            userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+            // get UID
+            const uid = userCredential.user.uid;
+
+            // save user doc in Firestore
+            await setDoc(doc(db, "users", uid), {
+                email: email,
+                createdAt: serverTimestamp()
+            });
+
+        } else {
+            // sign in
+            userCredential = await signInWithEmailAndPassword(auth, email, password);
         }
-    };
+
+        navigate("/allnotes");
+    } catch (err) {
+        setError(err.message);
+    }
+};
 
     return(
          <div className="bg-white font-roboto rounded-xl shadow-md p-6 w-full max-w-sm">
