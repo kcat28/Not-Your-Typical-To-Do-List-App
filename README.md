@@ -29,11 +29,13 @@ It served as a great hands-on exercise with React, Firebase, and modern frontend
 
 ### 📸 Screenshots
 
+#### ✨ Landing Page  
+![Landing Page](./screenshots/landing-page.png)
+
 #### 🏠 Home View  
 ![Home View](./screenshots/home-view-page.png)
 
 #### 🗂️ Achievement Page  
 ![Achievement Page](./screenshots/achievement-page.png)
 
-#### ✨ Landing Page  
-![Landing Page](./screenshots/landing-page.png)
+
