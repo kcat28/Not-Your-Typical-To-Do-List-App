@@ -1,36 +1,67 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import QuillEditorWithTasks from './QuillEditorWithTasks';
+import { db } from '../firebase/firebase';
+import { collection, addDoc } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
+import { serverTimestamp } from "firebase/firestore";
+import { useEffect } from 'react'; 
 
 function Note({ note, isCreating, onClose, page }) {
   const [save, setSave] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-  const [title, setTitle] = useState(note || "Untitled");
+  const [title, setTitle] = useState(note?.title || "Untitled");
   const [content, setContent] = useState(note?.content || "");
+  const [isComplete, setIsComplete] = useState(note?.isComplete || false);
+  const [noteType, setNoteType] = useState(note?.type || page || "to-do");
+  const [selectedAchievement, setSelectedAchievement] = useState(note?.achievement || "");
 
-  const [noteType, setNoteType] = useState( page || "to-do"); 
-  const [selectedAchievement, setSelectedAchievement] = useState("");
+  useEffect(() => {
+    if (!isCreating && note) {
+      setTitle(note.title || "Untitled");
+      setContent(note.content || "");
+      setIsComplete(note.isComplete || false);
+      setNoteType(note.type || "to-do");
+      setSelectedAchievement(note.achievement || "");
+    }
+  }, [note, isCreating]);
+
 
   const handleToggle = () => {
     setIsComplete(prev => !prev);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) {
+      alert("You must be logged in to save notes.");
+      return;
+    }
     const newNote = {
-    title,
-    content,
-    isComplete,
-    type: noteType,
-    achievement: noteType === "habit" ? selectedAchievement : null,
-    createdAt: new Date().toISOString()
+      title,
+      content,
+      isComplete,
+      type: noteType,
+      achievement: noteType === "habit" ? selectedAchievement : null,
+      createdAt: serverTimestamp()
+    };
+
+    try {
+      const docRef = await addDoc(
+        collection(db, "users", user.uid, "notes"), // collection path
+        newNote
+      );
+      console.log("Note saved with ID: ", docRef.id);
+      setSave(true);
+      setTimeout(() => {
+        setSave(false);
+        onClose(); // later change to opening that saved note (add query)
+      }, 690);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      alert("Failed to save note. Please try again.");
+    }
   };
-    console.log("Saving note:", newNote);
-    setSave(true);
-    setTimeout(() => {
-      setSave(false);
-      onClose(); // later change to opening that saved note (add query)
-    }, 690);
-  }
 
   const dummyAchievements = [
     "Thinking Like Senku",

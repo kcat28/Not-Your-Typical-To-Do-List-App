@@ -3,14 +3,49 @@ import Contentcard from '../components/Contentcard.jsx'
 import Sidebar from '../components/Sidebar.jsx';
 import Maincontent from '../components/Maincontent.jsx';
 import Note from '../components/Note.jsx';
+import { getAuth } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase"; // adjust path as needed
+import { useEffect } from "react";
+
 
 function Dashboard() {
+    const [notes, setNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedNote, setSelectedNote] = useState(null);
     const [isCreating, setIsCreating] = useState(false);
 
-    const handleNoteClick = (noteName) => {
+    useEffect(() => {
+        const fetchNotes = async () => {
+            const auth = getAuth();
+            const user = auth.currentUser;
+
+            if (!user) {
+            alert("Not logged in.");
+            return;
+            }
+
+            try {
+            const querySnapshot = await getDocs(collection(db, "users", user.uid, "notes"));
+            const userNotes = [];
+
+            querySnapshot.forEach((doc) => {
+                userNotes.push({ id: doc.id, ...doc.data() });
+            });
+
+            setNotes(userNotes);
+            setLoading(false);
+            } catch (err) {
+            console.error("Failed to load notes:", err);
+            }
+        };
+
+        fetchNotes();
+        }, []);
+
+    const handleNoteClick = (note) => {
         setIsCreating(false);
-        setSelectedNote(noteName);
+        setSelectedNote(note);
     };
      const handleNewNote = () => {
         setIsCreating(true);
@@ -28,10 +63,23 @@ function Dashboard() {
                  
                 {/* Main Content */}
                 <Maincontent title="All Notes 📁" isSub={false} isOpen={selectedNote || isCreating}>
-                <Contentcard onClick={() => handleNoteClick("Note 1")} shrink={selectedNote !== null || isCreating} noteName={"DB1"} />
-                <Contentcard onClick={() => handleNoteClick("Note 2")} shrink={selectedNote !== null || isCreating} noteName={"DB2"} />
-                <Contentcard onClick={() => handleNoteClick("Note 3")} shrink={selectedNote !== null || isCreating} noteName={"DB3"} />
-                <Contentcard onClick={() => handleNoteClick("Note 4")} shrink={selectedNote !== null || isCreating} noteName={"DB4"} />
+                  {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        notes.map((note) => (
+                        <Contentcard
+                            key={note.id}
+                            onClick={() => handleNoteClick(note)}
+                            shrink={selectedNote !== null || isCreating}
+                            noteName={note.title || "Untitled"}
+                            note={note}
+                            onDelete={(deletedId) => {
+                                setNotes((prev) => prev.filter((n) => n.id !== deletedId));
+                                if (selectedNote?.id === deletedId) setSelectedNote(null);
+                            }}
+                        />
+                        ))
+                    )}
 
                 <div
                     onClick={handleNewNote}
